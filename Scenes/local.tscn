@@ -1,16 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://dal6t57dbiexf"]
+[gd_scene load_steps=9 format=3 uid="uid://dal6t57dbiexf"]
 
 [ext_resource type="Texture2D" uid="uid://c18b50x4v5rre" path="res://Assets/Background.png" id="1_ehya0"]
 [ext_resource type="FontFile" uid="uid://c072gycswjwn1" path="res://Fonts/Perfect DOS VGA 437 Win.ttf" id="2_y70e7"]
 [ext_resource type="Shader" uid="uid://bixbjx1id06j0" path="res://Shaders/crt.gdshader" id="3_ql1t1"]
-[ext_resource type="Script" uid="uid://db4sxorcabe2w" path="res://Scenes/movement.gd" id="4_ql1t1"]
+[ext_resource type="Script" uid="uid://c4pvnypii26rs" path="res://Scripts/movement.gd" id="4_ql1t1"]
+[ext_resource type="Script" uid="uid://yxb3kb2vc8ns" path="res://Scripts/click_and_drag.gd" id="4_s0qnm"]
+[ext_resource type="Texture2D" path="res://Untitled.jpg" id="5_gbq6j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s0qnm"]
 shader = ExtResource("3_ql1t1")
 
 [sub_resource type="QuadMesh" id="QuadMesh_gbq6j"]
 size = Vector2(830, 600)
-center_offset = Vector3(1270, 550, 0)
+center_offset = Vector3(1270, 620, 0)
 
 [node name="Node2D" type="Node2D"]
 
@@ -28,67 +30,78 @@ transform = Transform2D(1, 0, 0, 1, 0, 1)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_s0qnm")
-scale = Vector2(1.0019803, 1)
 mesh = SubResource("QuadMesh_gbq6j")
 
-[node name="Menu" type="Node2D" parent="."]
+[node name="Untitled" type="Sprite2D" parent="."]
+position = Vector2(426, 781)
+texture = ExtResource("5_gbq6j")
+script = ExtResource("4_s0qnm")
 
-[node name="0" type="Label" parent="Menu"]
-offset_left = 971.0
-offset_top = 375.0
-offset_right = 1306.0
-offset_bottom = 415.0
+[node name="Computer" type="Node2D" parent="."]
+
+[node name="Menu" type="Node2D" parent="Computer"]
+position = Vector2(971, 425)
+
+[node name="Signed In" type="Label" parent="Computer/Menu"]
+offset_top = -50.0
+offset_right = 729.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Signed in as: 
+Local Police Department"
+
+[node name="0" type="Label" parent="Computer/Menu"]
+offset_top = 40.0
+offset_right = 335.0
+offset_bottom = 80.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Background Checks"
 
-[node name="1" type="Label" parent="Menu"]
-offset_left = 971.0
-offset_top = 425.0
-offset_right = 1188.0
-offset_bottom = 465.0
+[node name="1" type="Label" parent="Computer/Menu"]
+offset_top = 90.0
+offset_right = 217.0
+offset_bottom = 130.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Non-Profits"
 
-[node name="2" type="Label" parent="Menu"]
-offset_left = 971.0
-offset_top = 475.0
-offset_right = 1050.0
-offset_bottom = 515.0
+[node name="2" type="Label" parent="Computer/Menu"]
+offset_top = 140.0
+offset_right = 79.0
+offset_bottom = 180.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "News"
 
-[node name="3" type="Label" parent="Menu"]
-offset_left = 971.0
-offset_top = 525.0
-offset_right = 1207.0
-offset_bottom = 565.0
+[node name="3" type="Label" parent="Computer/Menu"]
+offset_top = 190.0
+offset_right = 236.0
+offset_bottom = 230.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Applications"
 
-[node name="<" type="Label" parent="Menu"]
-offset_left = 1753.0
-offset_top = 354.0
-offset_right = 1775.0
-offset_bottom = 394.0
+[node name="4" type="Label" parent="Computer/Menu"]
+offset_top = 240.0
+offset_right = 138.0
+offset_bottom = 276.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
-text = "<"
-script = ExtResource("4_ql1t1")
+text = "Log Out"
 
-[node name="Background Checks Menu" type="Node2D" parent="."]
+[node name="Background Checks" type="Node2D" parent="Computer"]
 visible = false
 position = Vector2(971, 425)
 
-[node name="10" type="Label" parent="Background Checks Menu"]
+[node name="Explanation" type="Label" parent="Computer/Background Checks"]
 offset_top = -50.0
 offset_right = 590.0
 offset_bottom = -10.0
@@ -97,69 +110,69 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Select What You Want Examined:"
 
-[node name="11" type="Label" parent="Background Checks Menu"]
-offset_right = 382.0
+[node name="10" type="Label" parent="Computer/Background Checks"]
+offset_right = 315.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Criminal History"
 
-[node name="12" type="Label" parent="Background Checks Menu"]
+[node name="11" type="Label" parent="Computer/Background Checks"]
 offset_top = 50.0
-offset_right = 382.0
+offset_right = 315.0
 offset_bottom = 90.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Restraing Orders"
 
-[node name="13" type="Label" parent="Background Checks Menu"]
+[node name="12" type="Label" parent="Computer/Background Checks"]
 offset_top = 100.0
-offset_right = 472.0
+offset_right = 414.0
 offset_bottom = 140.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Existing Prohibitions"
 
-[node name="14" type="Label" parent="Background Checks Menu"]
+[node name="13" type="Label" parent="Computer/Background Checks"]
 offset_top = 150.0
-offset_right = 495.0
+offset_right = 434.0
 offset_bottom = 190.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Fingerprint Submission"
 
-[node name="15" type="Label" parent="Background Checks Menu"]
+[node name="14" type="Label" parent="Computer/Background Checks"]
 offset_top = 200.0
-offset_right = 495.0
+offset_right = 335.0
 offset_bottom = 240.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Criminal Database"
 
-[node name="16" type="Label" parent="Background Checks Menu"]
+[node name="15" type="Label" parent="Computer/Background Checks"]
 offset_top = 250.0
-offset_right = 608.0
+offset_right = 413.0
 offset_bottom = 290.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Psych Hospitalization"
 
-[node name="17" type="Label" parent="Background Checks Menu"]
+[node name="16" type="Label" parent="Computer/Background Checks"]
 offset_top = 300.0
-offset_right = 608.0
+offset_right = 374.0
 offset_bottom = 340.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Sub Abuse Treatment"
 
-[node name="^" type="Label" parent="Background Checks Menu"]
+[node name="^" type="Label" parent="Computer/Background Checks"]
 offset_left = 562.0
 offset_top = 326.0
 offset_right = 593.0
@@ -170,11 +183,11 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 55
 text = "^"
 
-[node name="Background Checks Menu #2" type="Node2D" parent="."]
+[node name="Background Checks #2" type="Node2D" parent="Computer"]
 visible = false
 position = Vector2(971, 425)
 
-[node name="20" type="Label" parent="Background Checks Menu #2"]
+[node name="Explanation" type="Label" parent="Computer/Background Checks #2"]
 offset_top = -50.0
 offset_right = 590.0
 offset_bottom = -10.0
@@ -183,7 +196,7 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Select What You Want Examined:"
 
-[node name="21" type="Label" parent="Background Checks Menu #2"]
+[node name="20" type="Label" parent="Computer/Background Checks #2"]
 offset_left = -3.0
 offset_right = 410.0
 offset_bottom = 40.0
@@ -192,25 +205,25 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Interview Connections"
 
-[node name="22" type="Label" parent="Background Checks Menu #2"]
+[node name="21" type="Label" parent="Computer/Background Checks #2"]
 offset_top = 50.0
-offset_right = 382.0
+offset_right = 315.0
 offset_bottom = 90.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Online Footprint"
 
-[node name="23" type="Label" parent="Background Checks Menu #2"]
+[node name="22" type="Label" parent="Computer/Background Checks #2"]
 offset_top = 100.0
-offset_right = 472.0
+offset_right = 334.0
 offset_bottom = 140.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Check Connections"
 
-[node name="^" type="Label" parent="Background Checks Menu #2"]
+[node name="^" type="Label" parent="Computer/Background Checks #2"]
 offset_left = 562.0
 offset_top = 310.0
 offset_right = 593.0
@@ -220,11 +233,11 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 55
 text = "^"
 
-[node name="Non Profits" type="Node2D" parent="."]
+[node name="Non Profits" type="Node2D" parent="Computer"]
 visible = false
 position = Vector2(971, 425)
 
-[node name="30" type="Label" parent="Non Profits"]
+[node name="Explanation" type="Label" parent="Computer/Non Profits"]
 offset_top = -50.0
 offset_right = 590.0
 offset_bottom = -10.0
@@ -233,7 +246,7 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Select Action:"
 
-[node name="31" type="Label" parent="Non Profits"]
+[node name="30" type="Label" parent="Computer/Non Profits"]
 offset_right = 492.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
@@ -241,7 +254,7 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Lobby Supreme Court: 500$"
 
-[node name="32" type="Label" parent="Non Profits"]
+[node name="31" type="Label" parent="Computer/Non Profits"]
 offset_top = 50.0
 offset_right = 382.0
 offset_bottom = 90.0
@@ -250,7 +263,7 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Advertise Recruitment: 300$"
 
-[node name="33" type="Label" parent="Non Profits"]
+[node name="32" type="Label" parent="Computer/Non Profits"]
 offset_top = 100.0
 offset_right = 472.0
 offset_bottom = 140.0
@@ -259,7 +272,7 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Call For Impeachment: 1000$"
 
-[node name="34" type="Label" parent="Non Profits"]
+[node name="33" type="Label" parent="Computer/Non Profits"]
 offset_left = -3.0
 offset_top = 150.0
 offset_right = 509.0
@@ -269,16 +282,16 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Investigate Justices: 350$"
 
-[node name="35" type="Label" parent="Non Profits"]
+[node name="Funds" type="Label" parent="Computer/Non Profits"]
 offset_top = 200.0
-offset_right = 512.0
+offset_right = 335.0
 offset_bottom = 240.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Current Funds: 0$"
 
-[node name="Press Esc" type="Label" parent="Non Profits"]
+[node name="Press Esc" type="Label" parent="Computer/Non Profits"]
 offset_top = 250.0
 offset_right = 512.0
 offset_bottom = 290.0
@@ -287,69 +300,99 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Press Esc to Back Out..."
 
-[node name="News" type="Node2D" parent="."]
+[node name="Applications" type="Node2D" parent="Computer"]
 visible = false
 position = Vector2(971, 425)
 
-[node name="40" type="Label" parent="News"]
+[node name="Explanation" type="Label" parent="Computer/Applications"]
 offset_top = -50.0
 offset_right = 590.0
 offset_bottom = -10.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
-text = "Select Action:"
+text = "Select to Examine"
 
-[node name="41" type="Label" parent="News"]
+[node name="Esc" type="Label" parent="Computer/Applications"]
 offset_right = 492.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
-text = "Lobby Supreme Court: 500$"
 
-[node name="42" type="Label" parent="News"]
-offset_top = 50.0
-offset_right = 382.0
-offset_bottom = 90.0
+[node name="40" type="Label" parent="Computer/Applications"]
+offset_left = -1240.0
+offset_top = -53.0
+offset_right = -858.0
+offset_bottom = -13.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
-text = "Advertise Recruitment: 300$"
 
-[node name="43" type="Label" parent="News"]
-offset_top = 100.0
-offset_right = 472.0
-offset_bottom = 140.0
+[node name="41" type="Label" parent="Computer/Applications"]
+offset_left = -1403.0
+offset_top = 78.0
+offset_right = -931.0
+offset_bottom = 118.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
-text = "Call For Impeachment: 1000$"
 
-[node name="44" type="Label" parent="News"]
-offset_left = -3.0
-offset_top = 150.0
-offset_right = 509.0
-offset_bottom = 190.0
+[node name="42" type="Label" parent="Computer/Applications"]
+offset_left = -1623.0
+offset_top = 213.0
+offset_right = -1111.0
+offset_bottom = 253.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
-text = "Investigate Justices: 350$"
 
-[node name="45" type="Label" parent="News"]
-offset_top = 200.0
+[node name="43" type="Label" parent="Computer/Applications"]
+offset_left = -2275.0
+offset_top = 373.0
+offset_right = -1763.0
+offset_bottom = 448.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+
+[node name="44" type="Label" parent="Computer/Applications"]
+offset_left = -1830.0
+offset_top = 453.0
+offset_right = -1318.0
+offset_bottom = 528.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "
+"
+
+[node name="45" type="Label" parent="Computer/Applications"]
+offset_left = -1635.0
+offset_top = 537.0
+offset_right = -1123.0
+offset_bottom = 612.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "
+"
+
+[node name="Press Esc" type="Label" parent="Computer/Applications"]
 offset_right = 512.0
-offset_bottom = 240.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_fonts/font = ExtResource("2_y70e7")
-theme_override_font_sizes/font_size = 35
-text = "Current Funds: 0$"
-
-[node name="Press Esc" type="Label" parent="News"]
-offset_top = 250.0
-offset_right = 512.0
-offset_bottom = 290.0
+offset_bottom = 40.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Press Esc to Back Out..."
+
+[node name="<" type="Label" parent="Computer"]
+offset_left = 610.0
+offset_top = -49.0
+offset_right = 632.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "<"
+script = ExtResource("4_ql1t1")
