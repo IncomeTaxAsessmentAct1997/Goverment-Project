@@ -11,6 +11,9 @@
 [ext_resource type="Script" uid="uid://db4sxorcabe2w" path="res://Scripts/movement.gd" id="4_ql1t1"]
 [ext_resource type="Script" uid="uid://b2v82sygixj81" path="res://Scripts/click_and_drag.gd" id="4_s0qnm"]
 [ext_resource type="Texture2D" uid="uid://ca65g7y0p47pv" path="res://Untitled.jpg" id="5_gbq6j"]
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s0qnm"]
