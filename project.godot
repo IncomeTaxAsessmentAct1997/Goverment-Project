@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Papers Please"
-run/main_scene="res://Scenes/local.tscn"
+run/main_scene="uid://dal6t57dbiexf"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

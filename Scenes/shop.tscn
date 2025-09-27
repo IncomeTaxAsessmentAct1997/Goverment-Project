@@ -1,0 +1,227 @@
+[gd_scene load_steps=14 format=3 uid="uid://dm48wxucwf68b"]
+
+[ext_resource type="Texture2D" uid="uid://b4k1t2ilnudsr" path="res://Assets/Gun Shop.png" id="1_a0mxf"]
+[ext_resource type="Texture2D" uid="uid://dlkxli3r3uvqn" path="res://Assets/License.png" id="2_io27d"]
+[ext_resource type="FontFile" uid="uid://21ux7mip0o5" path="res://Fonts/BrothersideSignature-w13o6.otf" id="3_3ps1r"]
+[ext_resource type="Texture2D" uid="uid://ddqgd46j628wt" path="res://Assets/ID Badge.png" id="3_fdj0q"]
+[ext_resource type="FontFile" uid="uid://dyv42u0anfeto" path="res://Fonts/AutografPersonalUseOnly-mOBm.ttf" id="4_ymrm4"]
+[ext_resource type="Texture2D" uid="uid://dhnb8uf8fbv33" path="res://Assets/License Stamps.png" id="5_s8dlv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ps1r"]
+atlas = ExtResource("5_s8dlv")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymrm4"]
+atlas = ExtResource("5_s8dlv")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8dlv"]
+atlas = ExtResource("5_s8dlv")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyrku"]
+atlas = ExtResource("5_s8dlv")
+region = Rect2(100, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xp22"]
+atlas = ExtResource("5_s8dlv")
+region = Rect2(50, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow1eo"]
+atlas = ExtResource("5_s8dlv")
+region = Rect2(0, 50, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k6jq0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ps1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymrm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8dlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyrku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xp22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow1eo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GunShop" type="Sprite2D" parent="."]
+position = Vector2(1234, 696)
+texture = ExtResource("1_a0mxf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1119, 696)
+zoom = Vector2(1.408, 1.408)
+
+[node name="License" type="Sprite2D" parent="."]
+position = Vector2(1553, 871)
+texture = ExtResource("2_io27d")
+
+[node name="0" type="Label" parent="License"]
+offset_left = -170.0
+offset_top = -173.0
+offset_right = 109.0
+offset_bottom = -147.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 17
+text = "California Department of Justice"
+
+[node name="1" type="Label" parent="License"]
+offset_left = -170.0
+offset_top = -151.0
+offset_right = 78.0
+offset_bottom = -125.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 17
+text = "Firearms Saftey Certification"
+
+[node name="2" type="Label" parent="License"]
+offset_left = -170.0
+offset_top = -100.0
+offset_right = -17.0
+offset_bottom = -80.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "Issue Date: 00/00/0000"
+
+[node name="3" type="Label" parent="License"]
+offset_left = 5.0
+offset_top = -100.0
+offset_right = 148.0
+offset_bottom = -80.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "Exp Date: 00/00/0000"
+
+[node name="4" type="Label" parent="License"]
+offset_left = -170.0
+offset_top = -39.0
+offset_right = -65.0
+offset_bottom = -21.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "DOB: 00/00/0000"
+
+[node name="5" type="Label" parent="License"]
+offset_left = -170.0
+offset_top = -70.0
+offset_right = -37.0
+offset_bottom = -50.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "Issued To: John Doe"
+
+[node name="6" type="Label" parent="License"]
+offset_left = 5.0
+offset_top = -39.0
+offset_right = 117.0
+offset_bottom = -19.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "ID NO: 00000000"
+
+[node name="7" type="Label" parent="License"]
+offset_left = -36.0
+offset_top = 33.0
+offset_right = 25.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "Signature"
+
+[node name="8" type="Label" parent="License"]
+offset_left = -146.0
+offset_top = 111.0
+offset_right = 156.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "_____________________________________________________"
+
+[node name="9" type="Label" parent="License"]
+offset_left = -1.0
+offset_top = 66.0
+offset_right = 156.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "____________________________"
+
+[node name="10" type="Label" parent="License"]
+offset_left = -168.0
+offset_top = 66.0
+offset_right = -13.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "DOJ Certified Instructure:"
+
+[node name="11" type="Label" parent="License"]
+offset_left = -111.0
+offset_top = 133.0
+offset_right = 108.0
+offset_bottom = 151.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "DOJ Certified Instructure Signature"
+
+[node name="12" type="Label" parent="License"]
+offset_left = -146.0
+offset_top = 14.0
+offset_right = 150.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "_____________________________________________________"
+
+[node name="13" type="Label" parent="License"]
+offset_left = 44.0
+offset_top = 62.0
+offset_right = 101.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "John Doe"
+
+[node name="14" type="Label" parent="License"]
+offset_left = -44.0
+offset_top = 86.0
+offset_right = 48.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3ps1r")
+theme_override_font_sizes/font_size = 30
+text = "John Doe"
+
+[node name="15" type="Label" parent="License"]
+offset_left = -73.0
+offset_top = -4.0
+offset_right = 72.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ymrm4")
+theme_override_font_sizes/font_size = 30
+text = "John Doe"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="License"]
+position = Vector2(137, -137)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_k6jq0")
+
+[node name="IdBadge" type="Sprite2D" parent="."]
+position = Vector2(1679, 496)
+texture = ExtResource("3_fdj0q")
