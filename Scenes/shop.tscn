@@ -1,11 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://dm48wxucwf68b"]
+[gd_scene load_steps=23 format=3 uid="uid://dm48wxucwf68b"]
 
 [ext_resource type="Texture2D" uid="uid://b4k1t2ilnudsr" path="res://Assets/Gun Shop.png" id="1_a0mxf"]
 [ext_resource type="Texture2D" uid="uid://dlkxli3r3uvqn" path="res://Assets/License.png" id="2_io27d"]
 [ext_resource type="FontFile" uid="uid://21ux7mip0o5" path="res://Fonts/BrothersideSignature-w13o6.otf" id="3_3ps1r"]
-[ext_resource type="Texture2D" uid="uid://ddqgd46j628wt" path="res://Assets/ID Badge.png" id="3_fdj0q"]
+[ext_resource type="Texture2D" uid="uid://chlcu8ckgvuq" path="res://Assets/ID Badge.png" id="3_fdj0q"]
+[ext_resource type="Script" path="res://Scripts/click_and_drag.gd" id="3_ow1eo"]
 [ext_resource type="FontFile" uid="uid://dyv42u0anfeto" path="res://Fonts/AutografPersonalUseOnly-mOBm.ttf" id="4_ymrm4"]
 [ext_resource type="Texture2D" uid="uid://dhnb8uf8fbv33" path="res://Assets/License Stamps.png" id="5_s8dlv"]
+[ext_resource type="Texture2D" uid="uid://uy6q4xbd46dm" path="res://Assets/Defult Profile.jpg" id="7_5xp22"]
+[ext_resource type="Texture2D" uid="uid://dxrs2y4fsscun" path="res://Assets/ID Stamp.png" id="8_ow1eo"]
+[ext_resource type="Texture2D" uid="uid://dsn0ej536ju4c" path="res://Assets/ID Gold.png" id="9_k6pkm"]
+[ext_resource type="Texture2D" uid="uid://be3wiy1ukga2q" path="res://Assets/ID Underlay.png" id="10_1sjcd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ps1r"]
 atlas = ExtResource("5_s8dlv")
@@ -57,6 +62,35 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cyt5"]
+atlas = ExtResource("8_ow1eo")
+region = Rect2(0, 0, 112, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vsm1"]
+atlas = ExtResource("8_ow1eo")
+region = Rect2(112, 0, 112, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3568l"]
+atlas = ExtResource("8_ow1eo")
+region = Rect2(224, 0, 112, 61)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mjtuy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cyt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vsm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3568l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Node2D" type="Node2D"]
 
 [node name="GunShop" type="Sprite2D" parent="."]
@@ -68,16 +102,19 @@ position = Vector2(1119, 696)
 zoom = Vector2(1.408, 1.408)
 
 [node name="License" type="Sprite2D" parent="."]
-position = Vector2(1553, 871)
+position = Vector2(1711, 650)
 texture = ExtResource("2_io27d")
+script = ExtResource("3_ow1eo")
+drag_bounds = Rect2(1270, 223.5, 758, 945)
 
 [node name="0" type="Label" parent="License"]
 offset_left = -170.0
 offset_top = -173.0
 offset_right = 109.0
 offset_bottom = -147.0
+scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 170
 text = "California Department of Justice"
 
 [node name="1" type="Label" parent="License"]
@@ -85,8 +122,9 @@ offset_left = -170.0
 offset_top = -151.0
 offset_right = 78.0
 offset_bottom = -125.0
+scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 170
 text = "Firearms Saftey Certification"
 
 [node name="2" type="Label" parent="License"]
@@ -94,8 +132,9 @@ offset_left = -170.0
 offset_top = -100.0
 offset_right = -17.0
 offset_bottom = -80.0
+scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 140
 text = "Issue Date: 00/00/0000"
 
 [node name="3" type="Label" parent="License"]
@@ -103,8 +142,9 @@ offset_left = 5.0
 offset_top = -100.0
 offset_right = 148.0
 offset_bottom = -80.0
+scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 140
 text = "Exp Date: 00/00/0000"
 
 [node name="4" type="Label" parent="License"]
@@ -112,8 +152,9 @@ offset_left = -170.0
 offset_top = -39.0
 offset_right = -65.0
 offset_bottom = -21.0
+scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 140
 text = "DOB: 00/00/0000"
 
 [node name="5" type="Label" parent="License"]
@@ -121,53 +162,59 @@ offset_left = -170.0
 offset_top = -70.0
 offset_right = -37.0
 offset_bottom = -50.0
+scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 140
 text = "Issued To: John Doe"
 
 [node name="6" type="Label" parent="License"]
 offset_left = 5.0
 offset_top = -39.0
-offset_right = 117.0
-offset_bottom = -19.0
+offset_right = 1121.0
+offset_bottom = 153.0
+scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 140
 text = "ID NO: 00000000"
 
 [node name="7" type="Label" parent="License"]
-offset_left = -36.0
+offset_left = -28.0
 offset_top = 33.0
-offset_right = 25.0
-offset_bottom = 51.0
+offset_right = 6461.0
+offset_bottom = 1941.0
+scale = Vector2(0.01, 0.01)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 1400
 text = "Signature"
 
 [node name="8" type="Label" parent="License"]
-offset_left = -146.0
+offset_left = -158.0
 offset_top = 111.0
-offset_right = 156.0
-offset_bottom = 129.0
+offset_right = 31688.0
+offset_bottom = 2019.0
+scale = Vector2(0.01, 0.01)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 1400
 text = "_____________________________________________________"
 
 [node name="9" type="Label" parent="License"]
-offset_left = -1.0
-offset_top = 66.0
-offset_right = 156.0
-offset_bottom = 84.0
+offset_left = 8.0
+offset_top = 69.0
+offset_right = 15030.0
+offset_bottom = 1977.0
+scale = Vector2(0.01, 0.01)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
-text = "____________________________"
+theme_override_font_sizes/font_size = 1400
+text = "_________________________"
 
 [node name="10" type="Label" parent="License"]
 offset_left = -168.0
 offset_top = 66.0
-offset_right = -13.0
-offset_bottom = 84.0
+offset_right = 16891.0
+offset_bottom = 1974.0
+scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 140
 text = "DOJ Certified Instructure:"
 
 [node name="11" type="Label" parent="License"]
@@ -175,8 +222,9 @@ offset_left = -111.0
 offset_top = 133.0
 offset_right = 108.0
 offset_bottom = 151.0
+scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 140
 text = "DOJ Certified Instructure Signature"
 
 [node name="12" type="Label" parent="License"]
@@ -184,44 +232,196 @@ offset_left = -146.0
 offset_top = 14.0
 offset_right = 150.0
 offset_bottom = 32.0
+scale = Vector2(0.01, 0.01)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 1400
 text = "_____________________________________________________"
 
 [node name="13" type="Label" parent="License"]
-offset_left = 44.0
-offset_top = 62.0
-offset_right = 101.0
-offset_bottom = 80.0
+offset_left = 50.0
+offset_top = 66.0
+offset_right = 6154.0
+offset_bottom = 1974.0
+scale = Vector2(0.01, 0.01)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 1400
 text = "John Doe"
 
 [node name="14" type="Label" parent="License"]
-offset_left = -44.0
-offset_top = 86.0
-offset_right = 48.0
-offset_bottom = 136.0
+offset_left = -31.0
+offset_top = 98.0
+offset_right = 213.0
+offset_bottom = 232.0
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_3ps1r")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 80
 text = "John Doe"
 
 [node name="15" type="Label" parent="License"]
-offset_left = -73.0
-offset_top = -4.0
-offset_right = 72.0
-offset_bottom = 27.0
+offset_left = -43.0
+offset_top = 8.0
+offset_right = 9607.0
+offset_bottom = 2008.0
+scale = Vector2(0.01, 0.01)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_ymrm4")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 2000
 text = "John Doe"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="License"]
+[node name="License Stamp" type="AnimatedSprite2D" parent="License"]
 position = Vector2(137, -137)
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_k6jq0")
 
 [node name="IdBadge" type="Sprite2D" parent="."]
-position = Vector2(1679, 496)
+position = Vector2(1668, 420)
 texture = ExtResource("3_fdj0q")
+script = ExtResource("3_ow1eo")
+drag_bounds = Rect2(1270, 223.5, 758, 945)
+
+[node name="0" type="Label" parent="IdBadge"]
+offset_left = -115.0
+offset_top = -72.0
+offset_right = 305.0
+offset_bottom = 52.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.040813565, 0, 0.33685634, 1)
+theme_override_font_sizes/font_size = 90
+text = "California"
+
+[node name="1" type="Label" parent="IdBadge"]
+offset_left = -14.0
+offset_top = -74.0
+offset_right = 74.0
+offset_bottom = -11.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.040813565, 0, 0.33685634, 1)
+theme_override_font_sizes/font_size = 45
+text = "USA"
+
+[node name="2" type="Label" parent="IdBadge"]
+offset_left = 19.0
+offset_top = -75.0
+offset_right = 422.0
+offset_bottom = 86.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.060117133, 0.57601994, 0, 1)
+theme_override_constants/line_spacing = -5
+theme_override_font_sizes/font_size = 60
+text = "Identification 
+Card"
+horizontal_alignment = 1
+
+[node name="3" type="Label" parent="IdBadge"]
+z_index = 1
+offset_left = -27.0
+offset_top = -30.0
+offset_right = 35.0
+offset_bottom = -16.0
+scale = Vector2(0.09, 0.09)
+theme_override_colors/font_color = Color(0.69245994, 1.8410012e-06, 7.70092e-07, 1)
+theme_override_constants/line_spacing = -5
+theme_override_font_sizes/font_size = 110
+text = "ID: 00000000"
+horizontal_alignment = 1
+
+[node name="4" type="Label" parent="IdBadge"]
+z_index = 1
+offset_left = -27.0
+offset_top = -6.0
+offset_right = 818.0
+offset_bottom = 145.0
+scale = Vector2(0.09, 0.09)
+theme_override_colors/font_color = Color(0.69245994, 1.8410012e-06, 7.70092e-07, 1)
+theme_override_constants/line_spacing = -5
+theme_override_font_sizes/font_size = 110
+text = "EXP: 00/00/0000"
+
+[node name="5" type="Label" parent="IdBadge"]
+z_index = 1
+offset_left = -27.0
+offset_top = 7.0
+offset_right = 389.0
+offset_bottom = 158.0
+scale = Vector2(0.09, 0.09)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -5
+theme_override_font_sizes/font_size = 110
+text = "LN: Doe"
+horizontal_alignment = 1
+
+[node name="6" type="Label" parent="IdBadge"]
+z_index = 1
+offset_left = -27.0
+offset_top = 19.0
+offset_right = 340.0
+offset_bottom = 170.0
+scale = Vector2(0.09, 0.09)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -5
+theme_override_font_sizes/font_size = 110
+text = "FN: Joe"
+horizontal_alignment = 1
+
+[node name="7" type="Label" parent="IdBadge"]
+z_index = 1
+offset_left = -27.0
+offset_top = -18.0
+offset_right = 860.0
+offset_bottom = 133.0
+scale = Vector2(0.09, 0.09)
+theme_override_colors/font_color = Color(0.69245994, 1.8410012e-06, 7.70092e-07, 1)
+theme_override_constants/line_spacing = -5
+theme_override_font_sizes/font_size = 110
+text = "DOB: 00/00/0000"
+
+[node name="8" type="Label" parent="IdBadge"]
+offset_left = -114.0
+offset_top = 57.0
+offset_right = 9536.0
+offset_bottom = 2057.0
+scale = Vector2(0.01, 0.01)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ymrm4")
+theme_override_font_sizes/font_size = 2000
+text = "John Doe"
+
+[node name="Profile Picture" type="Sprite2D" parent="IdBadge"]
+position = Vector2(-73.625, 13.375)
+scale = Vector2(0.055232562, 0.0629845)
+texture = ExtResource("7_5xp22")
+
+[node name="IdStamp" type="AnimatedSprite2D" parent="IdBadge"]
+position = Vector2(84, 35)
+scale = Vector2(0.63, 0.63)
+sprite_frames = SubResource("SpriteFrames_mjtuy")
+
+[node name="IdGold" type="Sprite2D" parent="IdBadge"]
+position = Vector2(94, -20)
+texture = ExtResource("9_k6pkm")
+
+[node name="IdUnderlay" type="Sprite2D" parent="IdBadge"]
+position = Vector2(4.000002, -23)
+scale = Vector2(0.96875006, 1)
+texture = ExtResource("10_1sjcd")
+
+[node name="2" type="Sprite2D" parent="IdBadge/IdUnderlay"]
+position = Vector2(9.8063965, 12)
+scale = Vector2(1.3064517, 1)
+texture = ExtResource("10_1sjcd")
+
+[node name="3" type="Sprite2D" parent="IdBadge/IdUnderlay"]
+position = Vector2(7.7419434, 24)
+scale = Vector2(1.2419348, 1)
+texture = ExtResource("10_1sjcd")
+
+[node name="4" type="Sprite2D" parent="IdBadge/IdUnderlay"]
+position = Vector2(-11.887085, 37)
+scale = Vector2(0.6295376, 1)
+texture = ExtResource("10_1sjcd")
+
+[node name="5" type="Sprite2D" parent="IdBadge/IdUnderlay"]
+position = Vector2(-13.95166, 49.75)
+scale = Vector2(0.56501985, 1.1363636)
+texture = ExtResource("10_1sjcd")

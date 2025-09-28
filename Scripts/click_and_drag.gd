@@ -3,17 +3,19 @@ extends Sprite2D
 var is_dragging = false
 var drag_offset = Vector2.ZERO
 
+@export var drag_bounds := Rect2(Vector2(0, 0), Vector2(800, 600))
+
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				if is_mouse_over_sprite():
-					start_drag(event.position)
+					start_drag(get_global_mouse_position())
 			else:
 				stop_drag()
 	elif event is InputEventMouseMotion:
 		if is_dragging:
-			drag_sprite(event.position)
+			drag_sprite(get_global_mouse_position())
 
 func is_mouse_over_sprite() -> bool:
 	if texture == null:
@@ -28,7 +30,13 @@ func start_drag(mouse_pos: Vector2):
 	drag_offset = global_position - mouse_pos
 
 func drag_sprite(mouse_pos: Vector2):
-	global_position = mouse_pos + drag_offset
+	var new_pos = mouse_pos + drag_offset
+	
+	var half_size = texture.get_size() * 0.5
+	new_pos.x = clamp(new_pos.x, drag_bounds.position.x + half_size.x, drag_bounds.position.x + drag_bounds.size.x - half_size.x)
+	new_pos.y = clamp(new_pos.y, drag_bounds.position.y + half_size.y, drag_bounds.position.y + drag_bounds.size.y - half_size.y)
+
+	global_position = new_pos
 
 func stop_drag():
 	is_dragging = false
