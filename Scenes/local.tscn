@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dal6t57dbiexf"]
+[gd_scene load_steps=11 format=3 uid="uid://dal6t57dbiexf"]
 
 [ext_resource type="Texture2D" uid="uid://c18b50x4v5rre" path="res://Assets/Background.png" id="1_ehya0"]
-[ext_resource type="FontFile" uid="uid://c072gycswjwn1" path="res://Fonts/Perfect DOS VGA 437 Win.ttf" id="2_y70e7"]
+[ext_resource type="FontFile" uid="uid://c072gycswjwn1" path="res://Fonts/pixel.ttf" id="2_y70e7"]
 [ext_resource type="Shader" uid="uid://bixbjx1id06j0" path="res://Shaders/crt.gdshader" id="3_ql1t1"]
+[ext_resource type="Script" uid="uid://ow5pls6ol4bu" path="res://Scripts/date.gd" id="3_s0qnm"]
 [ext_resource type="Script" uid="uid://c4pvnypii26rs" path="res://Scripts/movement.gd" id="4_ql1t1"]
+[ext_resource type="Script" uid="uid://i8u7k6ucyxnj" path="res://Scripts/select.gd" id="5_gbq6j"]
+[ext_resource type="Script" uid="uid://21tr0qleo66w" path="res://scripts/supreme_court.gd" id="6_kbpr1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s0qnm"]
 shader = ExtResource("3_ql1t1")
@@ -32,179 +35,187 @@ signal dropped_on_zone(sprite, zone)
 signal dropped_on_invalid_area(sprite)
 
 func _ready():
-	# Store original position for potential snap-back
-	original_position = global_position
-	original_modulate = modulate
-	
-	# Create Area2D for mouse detection
-	var area = Area2D.new()
-	var collision = CollisionShape2D.new()
-	var shape = RectangleShape2D.new()
-	
-	# Add as children
-	add_child(area)
-	area.add_child(collision)
-	
-	# Configure collision shape to match sprite
-	if texture:
-		shape.size = texture.get_size()
-	else:
-		shape.size = Vector2(64, 64)
-	
-	collision.shape = shape
-	area.input_pickable = true
-	area.monitoring = true
-	area.monitorable = true
-	
-	# Connect signals
-	area.connect(\"input_event\", _on_area_input_event)
-	area.connect(\"mouse_entered\", _on_mouse_entered)
-	area.connect(\"mouse_exited\", _on_mouse_exited)
+    # Store original position for potential snap-back
+    original_position = global_position
+    original_modulate = modulate
+    
+    # Create Area2D for mouse detection
+    var area = Area2D.new()
+    var collision = CollisionShape2D.new()
+    var shape = RectangleShape2D.new()
+    
+    # Add as children
+    add_child(area)
+    area.add_child(collision)
+    
+    # Configure collision shape to match sprite
+    if texture:
+        shape.size = texture.get_size()
+    else:
+        shape.size = Vector2(64, 64)
+    
+    collision.shape = shape
+    area.input_pickable = true
+    area.monitoring = true
+    area.monitorable = true
+    
+    # Connect signals
+    area.connect(\"input_event\", _on_area_input_event)
+    area.connect(\"mouse_entered\", _on_mouse_entered)
+    area.connect(\"mouse_exited\", _on_mouse_exited)
 
 func _on_area_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			start_drag()
-		else:
-			end_drag()
+    if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+        if event.pressed:
+            start_drag()
+        else:
+            end_drag()
 
 func _on_mouse_entered():
-	pass  # No hover effect
+    pass  # No hover effect
 
 func _on_mouse_exited():
-	pass  # No hover effect
+    pass  # No hover effect
 
 func start_drag():
-	is_dragging = true
-	drag_offset = global_position - get_global_mouse_position()
-	
-	# Bring to front while dragging (no transparency effect)
-	z_index = 100
-	
-	# Find all drop zones in the scene
-	find_drop_zones()
-	
-	# Emit signal
-	emit_signal(\"drag_started\", self)
+    is_dragging = true
+    drag_offset = global_position - get_global_mouse_position()
+    
+    # Bring to front while dragging (no transparency effect)
+    z_index = 100
+    
+    # Find all drop zones in the scene
+    find_drop_zones()
+    
+    # Emit signal
+    emit_signal(\"drag_started\", self)
 
 func end_drag():
-	if not is_dragging:
-		return
-	
-	is_dragging = false
-	
-	# Reset z-index
-	z_index = 0
-	
-	# Check if dropped on a valid zone
-	var dropped_zone = check_drop_zones()
-	
-	if dropped_zone:
-		# Successfully dropped on a zone
-		handle_successful_drop(dropped_zone)
-	else:
-		# Dropped on invalid area
-		handle_invalid_drop()
-	
-	# Emit signal
-	emit_signal(\"drag_ended\", self)
+    if not is_dragging:
+        return
+    
+    is_dragging = false
+    
+    # Reset z-index
+    z_index = 0
+    
+    # Check if dropped on a valid zone
+    var dropped_zone = check_drop_zones()
+    
+    if dropped_zone:
+        # Successfully dropped on a zone
+        handle_successful_drop(dropped_zone)
+    else:
+        # Dropped on invalid area
+        handle_invalid_drop()
+    
+    # Emit signal
+    emit_signal(\"drag_ended\", self)
 
 func _process(delta):
-	if is_dragging:
-		global_position = get_global_mouse_position() + drag_offset
+    if is_dragging:
+        global_position = get_global_mouse_position() + drag_offset
 
 func find_drop_zones():
-	# Find all nodes in the scene tagged as drop zones
-	drop_zones.clear()
-	var root = get_tree().current_scene
-	_recursive_find_drop_zones(root)
+    # Find all nodes in the scene tagged as drop zones
+    drop_zones.clear()
+    var root = get_tree().current_scene
+    _recursive_find_drop_zones(root)
 
 func _recursive_find_drop_zones(node):
-	# Look for nodes with \"drop_zone\" in groups or specific class
-	if node.is_in_group(\"drop_zone\"):
-		drop_zones.append(node)
-	
-	for child in node.get_children():
-		_recursive_find_drop_zones(child)
+    # Look for nodes with \"drop_zone\" in groups or specific class
+    if node.is_in_group(\"drop_zone\"):
+        drop_zones.append(node)
+    
+    for child in node.get_children():
+        _recursive_find_drop_zones(child)
 
 func check_drop_zones():
-	# Check if the sprite overlaps with any drop zone
-	for zone in drop_zones:
-		if zone.has_method(\"can_accept_drop\") and not zone.can_accept_drop(self):
-			continue
-			
-		if is_overlapping_zone(zone):
-			return zone
-	return null
+    # Check if the sprite overlaps with any drop zone
+    for zone in drop_zones:
+        if zone.has_method(\"can_accept_drop\") and not zone.can_accept_drop(self):
+            continue
+            
+        if is_overlapping_zone(zone):
+            return zone
+    return null
 
 func is_overlapping_zone(zone):
-	# Simple bounds checking - override for more complex shapes
-	var sprite_rect = get_sprite_rect()
-	var zone_rect = zone.get_zone_rect() if zone.has_method(\"get_zone_rect\") else get_node_rect(zone)
-	
-	return sprite_rect.intersects(zone_rect)
+    # Simple bounds checking - override for more complex shapes
+    var sprite_rect = get_sprite_rect()
+    var zone_rect = zone.get_zone_rect() if zone.has_method(\"get_zone_rect\") else get_node_rect(zone)
+    
+    return sprite_rect.intersects(zone_rect)
 
 func get_sprite_rect():
-	if texture:
-		var size = texture.get_size()
-		return Rect2(global_position - size/2, size)
-	else:
-		return Rect2(global_position - Vector2(32, 32), Vector2(64, 64))
+    if texture:
+        var size = texture.get_size()
+        return Rect2(global_position - size/2, size)
+    else:
+        return Rect2(global_position - Vector2(32, 32), Vector2(64, 64))
 
 func get_node_rect(node):
-	# Get bounding rectangle for various node types
-	if node is Sprite2D and node.texture:
-		var size = node.texture.get_size()
-		return Rect2(node.global_position - size/2, size)
-	elif node is ColorRect:
-		return Rect2(node.global_position, node.size)
-	elif node.has_method(\"get_rect\"):
-		var rect = node.get_rect()
-		return Rect2(node.global_position + rect.position, rect.size)
-	else:
-		# Default size
-		return Rect2(node.global_position - Vector2(50, 50), Vector2(100, 100))
+    # Get bounding rectangle for various node types
+    if node is Sprite2D and node.texture:
+        var size = node.texture.get_size()
+        return Rect2(node.global_position - size/2, size)
+    elif node is ColorRect:
+        return Rect2(node.global_position, node.size)
+    elif node.has_method(\"get_rect\"):
+        var rect = node.get_rect()
+        return Rect2(node.global_position + rect.position, rect.size)
+    else:
+        # Default size
+        return Rect2(node.global_position - Vector2(50, 50), Vector2(100, 100))
 
 func handle_successful_drop(zone):
-	# Position sprite at the drop zone center (optional)
-	if zone.has_method(\"get_drop_position\"):
-		global_position = zone.get_drop_position()
-	
-	# Notify the drop zone
-	if zone.has_method(\"on_item_dropped\"):
-		zone.on_item_dropped(self)
-	
-	# Update original position so it doesn't snap back
-	original_position = global_position
-	
-	emit_signal(\"dropped_on_zone\", self, zone)
+    # Position sprite at the drop zone center (optional)
+    if zone.has_method(\"get_drop_position\"):
+        global_position = zone.get_drop_position()
+    
+    # Notify the drop zone
+    if zone.has_method(\"on_item_dropped\"):
+        zone.on_item_dropped(self)
+    
+    # Update original position so it doesn't snap back
+    original_position = global_position
+    
+    emit_signal(\"dropped_on_zone\", self, zone)
 
 func handle_invalid_drop():
-	# Just emit signal, no snap back
-	emit_signal(\"dropped_on_invalid_area\", self)
+    # Just emit signal, no snap back
+    emit_signal(\"dropped_on_invalid_area\", self)
 
 func snap_back_to_original():
-	# Smooth animation back to original position
-	var tween = create_tween()
-	tween.tween_property(self, \"global_position\", original_position, 0.3)
-	tween.tween_callback(func(): modulate = original_modulate)
+    # Smooth animation back to original position
+    var tween = create_tween()
+    tween.tween_property(self, \"global_position\", original_position, 0.3)
+    tween.tween_callback(func(): modulate = original_modulate)
 
 # Public methods for external control
 func set_draggable(draggable: bool):
-	var area = get_child(0) as Area2D
-	if area:
-		area.input_pickable = draggable
+    var area = get_child(0) as Area2D
+    if area:
+        area.input_pickable = draggable
 
 func reset_to_original_position():
-	global_position = original_position
-	modulate = original_modulate
-	is_dragging = false
+    global_position = original_position
+    modulate = original_modulate
+    is_dragging = false
 
 func set_original_position(pos: Vector2):
-	original_position = pos
+    original_position = pos
 "
 
 [node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+offset_left = 200.0
+offset_top = 112.0
+offset_right = 2360.0
+offset_bottom = 1327.0
+color = Color(0, 0, 0, 1)
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(1280, 720)
@@ -228,6 +239,7 @@ position = Vector2(563, 648)
 script = SubResource("GDScript_s0qnm")
 
 [node name="Computer" type="Node2D" parent="."]
+script = ExtResource("3_s0qnm")
 
 [node name="Menu" type="Node2D" parent="Computer"]
 position = Vector2(971, 375)
@@ -294,13 +306,15 @@ offset_bottom = 425.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
-text = "Date: 11/25/1987"
 
-[node name="Background Checks" type="Node2D" parent="Computer"]
+[node name="Checks" type="Node2D" parent="Computer"]
 visible = false
+script = ExtResource("5_gbq6j")
+
+[node name="Background Checks" type="Node2D" parent="Computer/Checks"]
 position = Vector2(971, 425)
 
-[node name="Explanation" type="Label" parent="Computer/Background Checks"]
+[node name="Explanation" type="Label" parent="Computer/Checks/Background Checks"]
 offset_top = -50.0
 offset_right = 590.0
 offset_bottom = -10.0
@@ -309,69 +323,69 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Select What You Want Examined:"
 
-[node name="10" type="Label" parent="Computer/Background Checks"]
+[node name="10" type="Label" parent="Computer/Checks/Background Checks"]
 offset_right = 315.0
 offset_bottom = 40.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Criminal History"
 
-[node name="11" type="Label" parent="Computer/Background Checks"]
+[node name="11" type="Label" parent="Computer/Checks/Background Checks"]
 offset_top = 50.0
 offset_right = 315.0
 offset_bottom = 90.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Restraing Orders"
 
-[node name="12" type="Label" parent="Computer/Background Checks"]
+[node name="12" type="Label" parent="Computer/Checks/Background Checks"]
 offset_top = 100.0
 offset_right = 414.0
 offset_bottom = 140.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Existing Prohibitions"
 
-[node name="13" type="Label" parent="Computer/Background Checks"]
+[node name="13" type="Label" parent="Computer/Checks/Background Checks"]
 offset_top = 150.0
 offset_right = 434.0
 offset_bottom = 190.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Fingerprint Submission"
 
-[node name="14" type="Label" parent="Computer/Background Checks"]
+[node name="14" type="Label" parent="Computer/Checks/Background Checks"]
 offset_top = 200.0
 offset_right = 335.0
 offset_bottom = 240.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Criminal Database"
 
-[node name="15" type="Label" parent="Computer/Background Checks"]
+[node name="15" type="Label" parent="Computer/Checks/Background Checks"]
 offset_top = 250.0
 offset_right = 413.0
 offset_bottom = 290.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Psych Hospitalization"
 
-[node name="16" type="Label" parent="Computer/Background Checks"]
+[node name="16" type="Label" parent="Computer/Checks/Background Checks"]
 offset_top = 300.0
 offset_right = 374.0
 offset_bottom = 340.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Sub Abuse Treatment"
 
-[node name="^" type="Label" parent="Computer/Background Checks"]
+[node name="^" type="Label" parent="Computer/Checks/Background Checks"]
 offset_left = 562.0
 offset_top = 326.0
 offset_right = 593.0
@@ -382,11 +396,10 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 55
 text = "^"
 
-[node name="Background Checks #2" type="Node2D" parent="Computer"]
-visible = false
+[node name="Background Checks #2" type="Node2D" parent="Computer/Checks"]
 position = Vector2(971, 425)
 
-[node name="Explanation" type="Label" parent="Computer/Background Checks #2"]
+[node name="Explanation" type="Label" parent="Computer/Checks/Background Checks #2"]
 offset_top = -50.0
 offset_right = 590.0
 offset_bottom = -10.0
@@ -395,34 +408,34 @@ theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Select What You Want Examined:"
 
-[node name="20" type="Label" parent="Computer/Background Checks #2"]
+[node name="20" type="Label" parent="Computer/Checks/Background Checks #2"]
 offset_left = -3.0
 offset_right = 410.0
 offset_bottom = 40.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Interview Connections"
 
-[node name="21" type="Label" parent="Computer/Background Checks #2"]
+[node name="21" type="Label" parent="Computer/Checks/Background Checks #2"]
 offset_top = 50.0
 offset_right = 315.0
 offset_bottom = 90.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Online Footprint"
 
-[node name="22" type="Label" parent="Computer/Background Checks #2"]
+[node name="22" type="Label" parent="Computer/Checks/Background Checks #2"]
 offset_top = 100.0
 offset_right = 334.0
 offset_bottom = 140.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Check Connections"
 
-[node name="^" type="Label" parent="Computer/Background Checks #2"]
+[node name="^" type="Label" parent="Computer/Checks/Background Checks #2"]
 offset_left = 562.0
 offset_top = 310.0
 offset_right = 593.0
@@ -479,7 +492,7 @@ offset_bottom = 190.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
-text = "Investigate Justices: 350$"
+text = "Investigate Justices: 500$"
 
 [node name="34" type="Label" parent="Computer/Non Profits"]
 offset_top = 200.0
@@ -500,6 +513,7 @@ theme_override_font_sizes/font_size = 35
 text = "Press Esc to Back Out..."
 
 [node name="Applications" type="Node2D" parent="Computer"]
+visible = false
 position = Vector2(971, 425)
 
 [node name="Explanation" type="Label" parent="Computer/Applications"]
@@ -573,6 +587,156 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_y70e7")
 theme_override_font_sizes/font_size = 35
 text = "Press Esc to Back Out..."
+
+[node name="News" type="Node2D" parent="Computer"]
+visible = false
+position = Vector2(971, 375)
+
+[node name="Explanation" type="Label" parent="Computer/News"]
+offset_right = 334.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Recent Articles:"
+
+[node name="Article" type="Label" parent="Computer/News"]
+offset_top = 50.0
+offset_right = 334.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Following recent alligations
+public opionion of Justice Brown
+has slowly been decreasing but
+polls show that public opionion
+is still generly positive."
+
+[node name="50" type="Label" parent="Computer/News"]
+offset_left = 1841.0
+offset_top = 140.0
+offset_right = 2097.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Justice Brown"
+
+[node name="Press Esc" type="Label" parent="Computer/News"]
+offset_top = 376.0
+offset_right = 512.0
+offset_bottom = 416.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Press Esc to Back Out..."
+
+[node name="Justices" type="Node2D" parent="Computer"]
+visible = false
+position = Vector2(971, 425)
+script = ExtResource("6_kbpr1")
+
+[node name="Page 1" type="Node2D" parent="Computer/Justices"]
+position = Vector2(3, 0)
+
+[node name="60" type="Label" parent="Computer/Justices/Page 1"]
+offset_left = -3.0
+offset_right = 253.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Justice Brown"
+
+[node name="61" type="Label" parent="Computer/Justices/Page 1"]
+offset_left = -3.0
+offset_top = 50.0
+offset_right = 253.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Justice Brown"
+
+[node name="62" type="Label" parent="Computer/Justices/Page 1"]
+offset_left = -3.0
+offset_top = 100.0
+offset_right = 253.0
+offset_bottom = 140.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Justice Brown"
+
+[node name="63" type="Label" parent="Computer/Justices/Page 1"]
+offset_left = -3.0
+offset_top = 150.0
+offset_right = 253.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Justice Brown"
+
+[node name="64" type="Label" parent="Computer/Justices/Page 1"]
+offset_left = -3.0
+offset_top = 200.0
+offset_right = 253.0
+offset_bottom = 240.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Justice Brown"
+
+[node name="65" type="Label" parent="Computer/Justices/Page 1"]
+offset_left = -3.0
+offset_top = 250.0
+offset_right = 253.0
+offset_bottom = 290.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Justice Brown"
+
+[node name="66" type="Label" parent="Computer/Justices/Page 1"]
+offset_left = -3.0
+offset_top = 300.0
+offset_right = 253.0
+offset_bottom = 340.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Justice Brown"
+
+[node name="Page 2" type="Node2D" parent="Computer/Justices"]
+visible = false
+
+[node name="70" type="Label" parent="Computer/Justices/Page 2"]
+offset_right = 256.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Justice Brown"
+
+[node name="71" type="Label" parent="Computer/Justices/Page 2"]
+offset_top = 50.0
+offset_right = 256.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Justice Brown"
+
+[node name="Explanation" type="Label" parent="Computer/Justices"]
+offset_top = -50.0
+offset_right = 590.0
+offset_bottom = -10.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_y70e7")
+theme_override_font_sizes/font_size = 35
+text = "Select Action:"
 
 [node name="<" type="Label" parent="Computer"]
 offset_left = 610.0

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://21ux7mip0o5"
-path="res://.godot/imported/BrothersideSignature-w13o6.otf-69932d60f5029b2a75ebab496933294c.fontdata"
+uid="uid://bsc05t6q02lya"
+path="res://.godot/imported/1.ttf-0feca765a918abb5c12b554a8227f34c.fontdata"
 
 [deps]
 
-source_file="res://Fonts/BrothersideSignature-w13o6.otf"
-dest_files=["res://.godot/imported/BrothersideSignature-w13o6.otf-69932d60f5029b2a75ebab496933294c.fontdata"]
+source_file="res://Fonts/1.ttf"
+dest_files=["res://.godot/imported/1.ttf-0feca765a918abb5c12b554a8227f34c.fontdata"]
 
 [params]
 
@@ -30,13 +30,7 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[{
-"chars": [],
-"glyphs": [],
-"name": "New Configuration",
-"size": Vector2i(16, 0),
-&"variation_embolden": 0.0
-}]
+preload=[]
 language_support={}
 script_support={}
 opentype_features={}

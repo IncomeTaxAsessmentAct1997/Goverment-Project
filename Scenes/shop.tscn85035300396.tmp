@@ -1,6 +1,5 @@
-[gd_scene load_steps=27 format=3 uid="uid://dm48wxucwf68b"]
+[gd_scene load_steps=26 format=3 uid="uid://dm48wxucwf68b"]
 
-[ext_resource type="Script" uid="uid://b1dl04f261l3i" path="res://Scripts/fade.gd" id="1_1cyt5"]
 [ext_resource type="Texture2D" uid="uid://b4k1t2ilnudsr" path="res://Assets/Gun Shop.png" id="1_a0mxf"]
 [ext_resource type="Texture2D" uid="uid://dlkxli3r3uvqn" path="res://Assets/License.png" id="2_io27d"]
 [ext_resource type="Script" uid="uid://qqgq2lambc2w" path="res://Scripts/main.gd" id="2_k6pkm"]
@@ -10,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dhnb8uf8fbv33" path="res://Assets/License Stamps.png" id="5_s8dlv"]
 [ext_resource type="FontFile" uid="uid://enrv8saavdbb" path="res://Fonts/4.ttf" id="6_k6pkm"]
 [ext_resource type="Texture2D" uid="uid://uy6q4xbd46dm" path="res://Assets/Defult Profile.jpg" id="7_5xp22"]
-[ext_resource type="Script" uid="uid://dosu1qsaw25rj" path="res://Scripts/warning.gd" id="8_1sjcd"]
+[ext_resource type="Script" uid="uid://dosu1qsaw25rj" path="res://Scenes/warning.gd" id="8_1sjcd"]
 [ext_resource type="Texture2D" uid="uid://dxrs2y4fsscun" path="res://Assets/ID Stamp.png" id="8_ow1eo"]
 [ext_resource type="Texture2D" uid="uid://dsn0ej536ju4c" path="res://Assets/ID Gold.png" id="9_k6pkm"]
 [ext_resource type="Texture2D" uid="uid://be3wiy1ukga2q" path="res://Assets/ID Underlay.png" id="10_1sjcd"]
@@ -102,15 +101,6 @@ corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 
 [node name="Node2D" type="Node2D"]
-
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = 2
-offset_left = 210.0
-offset_top = 184.0
-offset_right = 2028.0
-offset_bottom = 1208.0
-color = Color(0, 0, 0, 1)
-script = ExtResource("1_1cyt5")
 
 [node name="GunShop" type="Sprite2D" parent="."]
 position = Vector2(1234, 696)
@@ -221,7 +211,6 @@ metadata/_edit_use_anchors_ = true
 [node name="Doj Sig" type="Label" parent="License"]
 z_index = 1
 anchors_preset = -1
-anchor_top = -0.10243902
 anchor_bottom = -0.10243902
 offset_left = -157.59985
 offset_top = 147.19995

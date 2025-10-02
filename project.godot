@@ -15,11 +15,17 @@ run/main_scene="uid://dal6t57dbiexf"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Date="*res://Scripts/date.gd"
+
 [display]
 
 window/size/viewport_width=2560
 window/size/viewport_height=1440
 window/size/mode=4
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [input]
 

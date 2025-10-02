@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dyv42u0anfeto"
-path="res://.godot/imported/AutografPersonalUseOnly-mOBm.ttf-78b658deee4b37447e012214dbeba780.fontdata"
+uid="uid://enrv8saavdbb"
+path="res://.godot/imported/4.ttf-562ef1666ea2f050d654172116417070.fontdata"
 
 [deps]
 
-source_file="res://Fonts/AutografPersonalUseOnly-mOBm.ttf"
-dest_files=["res://.godot/imported/AutografPersonalUseOnly-mOBm.ttf-78b658deee4b37447e012214dbeba780.fontdata"]
+source_file="res://Fonts/4.ttf"
+dest_files=["res://.godot/imported/4.ttf-562ef1666ea2f050d654172116417070.fontdata"]
 
 [params]
 

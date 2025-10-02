@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c634eeeynpps2"
-path="res://.godot/imported/Theprestigesignature-ywwaM.otf-0680398a825cea49e4e1ae76768a15eb.fontdata"
+uid="uid://c072gycswjwn1"
+path="res://.godot/imported/pixel.ttf-cef283f84c29c489586e54af3880bc09.fontdata"
 
 [deps]
 
-source_file="res://Fonts/Theprestigesignature-ywwaM.otf"
-dest_files=["res://.godot/imported/Theprestigesignature-ywwaM.otf-0680398a825cea49e4e1ae76768a15eb.fontdata"]
+source_file="res://Fonts/pixel.ttf"
+dest_files=["res://.godot/imported/pixel.ttf-cef283f84c29c489586e54af3880bc09.fontdata"]
 
 [params]
 

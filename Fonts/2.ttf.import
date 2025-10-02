@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bsc05t6q02lya"
-path="res://.godot/imported/AAutoSignature-1GD9j.ttf-521e032e25994ab984485a87ef97b717.fontdata"
+uid="uid://dyv42u0anfeto"
+path="res://.godot/imported/2.ttf-b99e9e7c6c2824c2f0d1898c05106f83.fontdata"
 
 [deps]
 
-source_file="res://Fonts/AAutoSignature-1GD9j.ttf"
-dest_files=["res://.godot/imported/AAutoSignature-1GD9j.ttf-521e032e25994ab984485a87ef97b717.fontdata"]
+source_file="res://Fonts/2.ttf"
+dest_files=["res://.godot/imported/2.ttf-b99e9e7c6c2824c2f0d1898c05106f83.fontdata"]
 
 [params]
 

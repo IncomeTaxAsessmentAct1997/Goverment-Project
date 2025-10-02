@@ -1,16 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://dm48wxucwf68b"]
+[gd_scene load_steps=24 format=3 uid="uid://dm48wxucwf68b"]
 
-[ext_resource type="Script" uid="uid://b1dl04f261l3i" path="res://Scripts/fade.gd" id="1_1cyt5"]
 [ext_resource type="Texture2D" uid="uid://b4k1t2ilnudsr" path="res://Assets/Gun Shop.png" id="1_a0mxf"]
 [ext_resource type="Texture2D" uid="uid://dlkxli3r3uvqn" path="res://Assets/License.png" id="2_io27d"]
 [ext_resource type="Script" uid="uid://qqgq2lambc2w" path="res://Scripts/main.gd" id="2_k6pkm"]
+[ext_resource type="FontFile" uid="uid://21ux7mip0o5" path="res://Fonts/3.otf" id="3_3ps1r"]
 [ext_resource type="Texture2D" uid="uid://chlcu8ckgvuq" path="res://Assets/ID Badge.png" id="3_fdj0q"]
 [ext_resource type="Script" path="res://Scripts/click_and_drag.gd" id="3_ow1eo"]
 [ext_resource type="FontFile" uid="uid://dyv42u0anfeto" path="res://Fonts/2.ttf" id="4_ymrm4"]
 [ext_resource type="Texture2D" uid="uid://dhnb8uf8fbv33" path="res://Assets/License Stamps.png" id="5_s8dlv"]
-[ext_resource type="FontFile" uid="uid://enrv8saavdbb" path="res://Fonts/4.ttf" id="6_k6pkm"]
 [ext_resource type="Texture2D" uid="uid://uy6q4xbd46dm" path="res://Assets/Defult Profile.jpg" id="7_5xp22"]
-[ext_resource type="Script" uid="uid://dosu1qsaw25rj" path="res://Scripts/warning.gd" id="8_1sjcd"]
 [ext_resource type="Texture2D" uid="uid://dxrs2y4fsscun" path="res://Assets/ID Stamp.png" id="8_ow1eo"]
 [ext_resource type="Texture2D" uid="uid://dsn0ej536ju4c" path="res://Assets/ID Gold.png" id="9_k6pkm"]
 [ext_resource type="Texture2D" uid="uid://be3wiy1ukga2q" path="res://Assets/ID Underlay.png" id="10_1sjcd"]
@@ -94,23 +92,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1cyt5"]
-bg_color = Color(0.8442833, 0.72002256, 0.48216993, 1)
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-corner_radius_bottom_right = 100
-corner_radius_bottom_left = 100
-
 [node name="Node2D" type="Node2D"]
-
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = 2
-offset_left = 210.0
-offset_top = 184.0
-offset_right = 2028.0
-offset_bottom = 1208.0
-color = Color(0, 0, 0, 1)
-script = ExtResource("1_1cyt5")
 
 [node name="GunShop" type="Sprite2D" parent="."]
 position = Vector2(1234, 696)
@@ -122,7 +104,7 @@ position = Vector2(1119, 696)
 zoom = Vector2(1.408, 1.408)
 
 [node name="License" type="Sprite2D" parent="."]
-position = Vector2(1618.0001, 845.00006)
+position = Vector2(1619, 706)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("2_io27d")
 script = ExtResource("3_ow1eo")
@@ -136,7 +118,6 @@ offset_bottom = -147.0
 scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 170
-metadata/_edit_use_anchors_ = true
 
 [node name="Issue" type="Label" parent="License"]
 offset_left = -170.0
@@ -147,7 +128,6 @@ scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 140
 text = "Issue Date: 00/00/0000"
-metadata/_edit_use_anchors_ = true
 
 [node name="Exp" type="Label" parent="License"]
 offset_left = 5.0
@@ -158,7 +138,6 @@ scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 140
 text = "Exp Date: 00/00/0000"
-metadata/_edit_use_anchors_ = true
 
 [node name="Name" type="Label" parent="License"]
 offset_left = -170.0
@@ -169,7 +148,6 @@ scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 140
 text = "Issued To: John Doe"
-metadata/_edit_use_anchors_ = true
 
 [node name="Dob" type="Label" parent="License"]
 offset_left = -170.0
@@ -180,7 +158,6 @@ scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 140
 text = "DOB: 00/00/0000"
-metadata/_edit_use_anchors_ = true
 
 [node name="Number" type="Label" parent="License"]
 offset_left = 5.0
@@ -191,7 +168,6 @@ scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 140
 text = "ID NO: 00000000"
-metadata/_edit_use_anchors_ = true
 
 [node name="Name Sig" type="Label" parent="License"]
 offset_left = -157.60007
@@ -204,7 +180,6 @@ theme_override_fonts/font = ExtResource("4_ymrm4")
 theme_override_font_sizes/font_size = 2000
 text = "John Doe"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Doj Name" type="Label" parent="License"]
 offset_left = 8.0
@@ -216,24 +191,18 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 1400
 text = "John Doe"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Doj Sig" type="Label" parent="License"]
-z_index = 1
-anchors_preset = -1
-anchor_top = -0.10243902
-anchor_bottom = -0.10243902
-offset_left = -157.59985
-offset_top = 147.19995
-offset_right = 1116.0002
-offset_bottom = 281.19995
+offset_left = -157.59998
+offset_top = 98.0
+offset_right = 1116.0001
+offset_bottom = 232.0
 scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_k6pkm")
+theme_override_fonts/font = ExtResource("3_3ps1r")
 theme_override_font_sizes/font_size = 80
-text = "EllaRo"
+text = "John Doe"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="0" type="Label" parent="License"]
 offset_left = -170.0
@@ -244,7 +213,6 @@ scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 170
 text = "Firearms Saftey Certification"
-metadata/_edit_use_anchors_ = true
 
 [node name="1" type="Label" parent="License"]
 offset_left = -28.0
@@ -255,7 +223,6 @@ scale = Vector2(0.01, 0.01)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 1400
 text = "Signature"
-metadata/_edit_use_anchors_ = true
 
 [node name="2" type="Label" parent="License"]
 offset_left = -158.0
@@ -266,7 +233,6 @@ scale = Vector2(0.01, 0.01)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 1400
 text = "_____________________________________________________"
-metadata/_edit_use_anchors_ = true
 
 [node name="3" type="Label" parent="License"]
 offset_left = 8.0
@@ -277,7 +243,6 @@ scale = Vector2(0.01, 0.01)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 1400
 text = "_________________________"
-metadata/_edit_use_anchors_ = true
 
 [node name="4" type="Label" parent="License"]
 offset_left = -168.0
@@ -288,7 +253,6 @@ scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 140
 text = "DOJ Certified Instructure:"
-metadata/_edit_use_anchors_ = true
 
 [node name="5" type="Label" parent="License"]
 offset_left = -111.0
@@ -299,10 +263,8 @@ scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 140
 text = "DOJ Certified Instructure Signature"
-metadata/_edit_use_anchors_ = true
 
 [node name="6" type="Label" parent="License"]
-z_index = 1
 offset_left = -157.6
 offset_top = 14.0
 offset_right = 32848.4
@@ -311,16 +273,14 @@ scale = Vector2(0.01, 0.01)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 1400
 text = "_____________________________________________________"
-metadata/_edit_use_anchors_ = true
 
 [node name="Stamp" type="AnimatedSprite2D" parent="License"]
 position = Vector2(137, -137)
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_k6jq0")
-script = ExtResource("8_1sjcd")
 
 [node name="IdBadge" type="Sprite2D" parent="."]
-position = Vector2(1649, 438)
+position = Vector2(1838, 424)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("3_fdj0q")
 script = ExtResource("3_ow1eo")
@@ -334,9 +294,6 @@ offset_bottom = 52.0
 scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0.040813565, 0, 0.33685634, 1)
 theme_override_font_sizes/font_size = 90
-text = "California"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="1" type="Label" parent="IdBadge/State"]
 layout_mode = 0
@@ -360,7 +317,6 @@ theme_override_colors/font_color = Color(0.69245994, 1.8410012e-06, 7.70092e-07,
 theme_override_constants/line_spacing = -5
 theme_override_font_sizes/font_size = 100
 text = "ID: WWWWWWW"
-metadata/_edit_use_anchors_ = true
 
 [node name="Dob" type="Label" parent="IdBadge"]
 z_index = 1
@@ -373,7 +329,6 @@ theme_override_colors/font_color = Color(0.69245994, 1.8410012e-06, 7.70092e-07,
 theme_override_constants/line_spacing = -5
 theme_override_font_sizes/font_size = 100
 text = "DOB: 00/00/0000"
-metadata/_edit_use_anchors_ = true
 
 [node name="Exp" type="Label" parent="IdBadge"]
 z_index = 1
@@ -386,7 +341,6 @@ theme_override_colors/font_color = Color(0.69245994, 1.8410012e-06, 7.70092e-07,
 theme_override_constants/line_spacing = -5
 theme_override_font_sizes/font_size = 100
 text = "EXP: 00/00/0000"
-metadata/_edit_use_anchors_ = true
 
 [node name="Ln" type="Label" parent="IdBadge"]
 z_index = 1
@@ -399,7 +353,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -5
 theme_override_font_sizes/font_size = 100
 text = "LN: Anderson"
-metadata/_edit_use_anchors_ = true
 
 [node name="Fn" type="Label" parent="IdBadge"]
 z_index = 1
@@ -412,7 +365,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -5
 theme_override_font_sizes/font_size = 100
 text = "FN: Benjamin"
-metadata/_edit_use_anchors_ = true
 
 [node name="Name Sig" type="Label" parent="IdBadge"]
 offset_left = -114.0
@@ -424,7 +376,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_ymrm4")
 theme_override_font_sizes/font_size = 2000
 text = "John Doe"
-metadata/_edit_use_anchors_ = true
 
 [node name="0" type="Label" parent="IdBadge"]
 offset_left = 19.0
@@ -438,7 +389,6 @@ theme_override_font_sizes/font_size = 60
 text = "Identification 
 Card"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Profile Picture" type="Sprite2D" parent="IdBadge"]
 position = Vector2(-73.625, 13.375)
@@ -478,24 +428,3 @@ texture = ExtResource("10_1sjcd")
 position = Vector2(-9.067627, 50.80359)
 scale = Vector2(0.7173233, 1.1095523)
 texture = ExtResource("10_1sjcd")
-
-[node name="Warning" type="Label" parent="."]
-z_index = 1
-offset_left = 1793.0
-offset_top = 638.0
-offset_right = 3182.0
-offset_bottom = 1047.0
-scale = Vector2(0.05, 0.05)
-theme_override_colors/font_color = Color(0.15838563, 0.110740565, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
-theme_override_colors/font_outline_color = Color(0.99999994, 0.16108581, 0.31631678, 1)
-theme_override_font_sizes/font_size = 300
-text = "Forged ID"
-
-[node name="Panel" type="Panel" parent="Warning"]
-z_as_relative = false
-layout_mode = 0
-offset_left = -40.0
-offset_right = 1420.0
-offset_bottom = 440.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_1cyt5")
