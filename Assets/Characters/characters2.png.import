@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chlcu8ckgvuq"
-path="res://.godot/imported/ID Badge.png-6f040d989b4be5ba04bda882d8d4218d.ctex"
+uid="uid://vaqpgpntcqjw"
+path="res://.godot/imported/characters2.png-302e914f953778915c02515eeacb0d57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ID Badge.png"
-dest_files=["res://.godot/imported/ID Badge.png-6f040d989b4be5ba04bda882d8d4218d.ctex"]
+source_file="res://Assets/Characters/characters2.png"
+dest_files=["res://.godot/imported/characters2.png-302e914f953778915c02515eeacb0d57.ctex"]
 
 [params]
 

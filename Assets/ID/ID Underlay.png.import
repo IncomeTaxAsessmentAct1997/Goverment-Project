@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxrs2y4fsscun"
-path="res://.godot/imported/ID Stamp.png-a02a11e48ccaed715f1f2b6a18d6b82a.ctex"
+uid="uid://be3wiy1ukga2q"
+path="res://.godot/imported/ID Underlay.png-0fe71d7b1c4faafaaa795e688ce354fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ID Stamp.png"
-dest_files=["res://.godot/imported/ID Stamp.png-a02a11e48ccaed715f1f2b6a18d6b82a.ctex"]
+source_file="res://Assets/ID/ID Underlay.png"
+dest_files=["res://.godot/imported/ID Underlay.png-0fe71d7b1c4faafaaa795e688ce354fa.ctex"]
 
 [params]
 

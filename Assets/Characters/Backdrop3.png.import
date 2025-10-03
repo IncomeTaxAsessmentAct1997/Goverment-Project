@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsn0ej536ju4c"
-path="res://.godot/imported/ID Gold.png-5edada7f2ee9245b97feeeb518e09afa.ctex"
+uid="uid://c663i0ow3iix5"
+path="res://.godot/imported/Backdrop3.png-f5c91003a9460c3fda95914c90047cc6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ID Gold.png"
-dest_files=["res://.godot/imported/ID Gold.png-5edada7f2ee9245b97feeeb518e09afa.ctex"]
+source_file="res://Assets/Characters/Backdrop3.png"
+dest_files=["res://.godot/imported/Backdrop3.png-f5c91003a9460c3fda95914c90047cc6.ctex"]
 
 [params]
 

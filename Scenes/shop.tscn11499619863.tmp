@@ -1,23 +1,26 @@
-[gd_scene load_steps=43 format=3 uid="uid://dm48wxucwf68b"]
+[gd_scene load_steps=41 format=3 uid="uid://dm48wxucwf68b"]
 
 [ext_resource type="Script" uid="uid://b1dl04f261l3i" path="res://Scripts/fade.gd" id="1_1cyt5"]
 [ext_resource type="Texture2D" uid="uid://b4k1t2ilnudsr" path="res://Assets/Gun Shop.png" id="1_a0mxf"]
 [ext_resource type="Texture2D" uid="uid://dlkxli3r3uvqn" path="res://Assets/License.png" id="2_io27d"]
 [ext_resource type="Script" uid="uid://qqgq2lambc2w" path="res://Scripts/main.gd" id="2_k6pkm"]
+[ext_resource type="Texture2D" uid="uid://chlcu8ckgvuq" path="res://Assets/ID Badge.png" id="3_fdj0q"]
 [ext_resource type="Script" path="res://Scripts/click_and_drag.gd" id="3_ow1eo"]
 [ext_resource type="Script" uid="uid://dawtal6kxa17" path="res://Scripts/buttons.gd" id="4_0vsm1"]
 [ext_resource type="FontFile" uid="uid://dyv42u0anfeto" path="res://Fonts/2.ttf" id="4_ymrm4"]
 [ext_resource type="Texture2D" uid="uid://dhnb8uf8fbv33" path="res://Assets/License Stamps.png" id="5_s8dlv"]
 [ext_resource type="FontFile" uid="uid://enrv8saavdbb" path="res://Fonts/4.ttf" id="6_k6pkm"]
-[ext_resource type="Texture2D" uid="uid://chlcu8ckgvuq" path="res://Assets/ID/ID Badge.png" id="11_1sjcd"]
-[ext_resource type="Texture2D" uid="uid://deuf8p3ykxa" path="res://Assets/Characters/profile.png" id="12_3mbjb"]
+[ext_resource type="Texture2D" uid="uid://uy6q4xbd46dm" path="res://Assets/Defult Profile.jpg" id="7_5xp22"]
+[ext_resource type="Texture2D" uid="uid://dxrs2y4fsscun" path="res://Assets/ID Stamp.png" id="8_ow1eo"]
+[ext_resource type="Texture2D" uid="uid://dsn0ej536ju4c" path="res://Assets/ID Gold.png" id="9_k6pkm"]
+[ext_resource type="Texture2D" uid="uid://be3wiy1ukga2q" path="res://Assets/ID Underlay.png" id="10_1sjcd"]
 [ext_resource type="Texture2D" uid="uid://lvajqmsy0xob" path="res://Assets/buttons.png" id="14_1cyt5"]
-[ext_resource type="Texture2D" uid="uid://bbevedsbcc62r" path="res://Assets/Characters/characters1.png" id="14_cuuv1"]
-[ext_resource type="Texture2D" uid="uid://bl8x1ywds4nao" path="res://Assets/Characters/characters3.png" id="15_yl1pv"]
 [ext_resource type="Script" uid="uid://bruuq3vic4eor" path="res://Scripts/char.gd" id="16_3mbjb"]
-[ext_resource type="Texture2D" uid="uid://vaqpgpntcqjw" path="res://Assets/Characters/characters2.png" id="16_m13ki"]
-[ext_resource type="Texture2D" uid="uid://bh8n1bo0euofs" path="res://Assets/Characters/characters4.png" id="17_3mbjb"]
-[ext_resource type="Texture2D" uid="uid://c663i0ow3iix5" path="res://Assets/Characters/Backdrop3.png" id="18_jhx1v"]
+[ext_resource type="Texture2D" uid="uid://bbevedsbcc62r" path="res://Assets/characters1.png" id="16_yl1pv"]
+[ext_resource type="Texture2D" uid="uid://bl8x1ywds4nao" path="res://Assets/characters3.png" id="17_m13ki"]
+[ext_resource type="Texture2D" uid="uid://vaqpgpntcqjw" path="res://Assets/characters2.png" id="18_3mbjb"]
+[ext_resource type="Texture2D" uid="uid://bh8n1bo0euofs" path="res://Assets/characters4.png" id="19_jhx1v"]
+[ext_resource type="Texture2D" uid="uid://b0vga4igg5l83" path="res://Assets/Backdrop3.png" id="21_jhx1v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mjtuy"]
 atlas = ExtResource("14_1cyt5")
@@ -119,49 +122,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dvu38"]
-atlas = ExtResource("12_3mbjb")
-region = Rect2(356, 0, 356, 356)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k7yfq"]
-atlas = ExtResource("12_3mbjb")
-region = Rect2(356, 356, 356, 356)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6rctg"]
-atlas = ExtResource("12_3mbjb")
-region = Rect2(0, 356, 356, 356)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1shhe"]
-atlas = ExtResource("12_3mbjb")
-region = Rect2(0, 0, 356, 356)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_n1qjt"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dvu38")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k7yfq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6rctg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1shhe")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1cyt5"]
+atlas = ExtResource("8_ow1eo")
 region = Rect2(0, 0, 112, 61)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0vsm1"]
+atlas = ExtResource("8_ow1eo")
 region = Rect2(112, 0, 112, 61)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3568l"]
+atlas = ExtResource("8_ow1eo")
 region = Rect2(224, 0, 112, 61)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mjtuy"]
@@ -185,16 +155,16 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("14_cuuv1")
+"texture": ExtResource("16_yl1pv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_yl1pv")
+"texture": ExtResource("17_m13ki")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_m13ki")
+"texture": ExtResource("18_3mbjb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_3mbjb")
+"texture": ExtResource("19_jhx1v")
 }],
 "loop": true,
 "name": &"default",
@@ -451,7 +421,7 @@ sprite_frames = SubResource("SpriteFrames_k6jq0")
 [node name="IdBadge" type="Sprite2D" parent="Documents"]
 position = Vector2(1579, 436)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("11_1sjcd")
+texture = ExtResource("3_fdj0q")
 script = ExtResource("3_ow1eo")
 drag_bounds_normal = Rect2(1270.278, 221.568, 756.392, 943.892)
 drag_bounds_button_pressed = Rect2(209.909, 183.926, 1817.471, 1023)
@@ -571,10 +541,10 @@ Card"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Profile Picture" type="AnimatedSprite2D" parent="Documents/IdBadge"]
-position = Vector2(-73.67643, 13.033836)
-scale = Vector2(0.19818227, 0.22789983)
-sprite_frames = SubResource("SpriteFrames_n1qjt")
+[node name="Profile Picture" type="Sprite2D" parent="Documents/IdBadge"]
+position = Vector2(-73.625, 13.375)
+scale = Vector2(0.055232562, 0.0629845)
+texture = ExtResource("7_5xp22")
 
 [node name="IdStamp" type="AnimatedSprite2D" parent="Documents/IdBadge"]
 position = Vector2(84, 35)
@@ -583,26 +553,32 @@ sprite_frames = SubResource("SpriteFrames_mjtuy")
 
 [node name="IdGold" type="Sprite2D" parent="Documents/IdBadge"]
 position = Vector2(94, -20)
+texture = ExtResource("9_k6pkm")
 
 [node name="IdUnderlay" type="Sprite2D" parent="Documents/IdBadge"]
 position = Vector2(14.399926, -23.450012)
 scale = Vector2(1.3249977, 0.9181796)
+texture = ExtResource("10_1sjcd")
 
 [node name="2" type="Sprite2D" parent="Documents/IdBadge/IdUnderlay"]
 position = Vector2(-3.6225586, 12.0000305)
 scale = Vector2(0.886793, 0.9179999)
+texture = ExtResource("10_1sjcd")
 
 [node name="3" type="Sprite2D" parent="Documents/IdBadge/IdUnderlay"]
 position = Vector2(-4.8302, 24.00003)
 scale = Vector2(0.84905726, 0.9179999)
+texture = ExtResource("10_1sjcd")
 
 [node name="4" type="Sprite2D" parent="Documents/IdBadge/IdUnderlay"]
 position = Vector2(-8.765625, 37.89389)
 scale = Vector2(0.7267584, 1.080521)
+texture = ExtResource("10_1sjcd")
 
 [node name="5" type="Sprite2D" parent="Documents/IdBadge/IdUnderlay"]
 position = Vector2(-9.067627, 50.80359)
 scale = Vector2(0.7173233, 1.1095523)
+texture = ExtResource("10_1sjcd")
 
 [node name="Char" type="Node2D" parent="."]
 position = Vector2(-26, -29)
@@ -614,4 +590,4 @@ sprite_frames = SubResource("SpriteFrames_k7yfq")
 
 [node name="Backdrop" type="Sprite2D" parent="Char"]
 position = Vector2(713, 804)
-texture = ExtResource("18_jhx1v")
+texture = ExtResource("21_jhx1v")

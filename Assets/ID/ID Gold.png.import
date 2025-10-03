@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be3wiy1ukga2q"
-path="res://.godot/imported/ID Underlay.png-e8906f3eb3b50ebc4e46d097a116f890.ctex"
+uid="uid://dsn0ej536ju4c"
+path="res://.godot/imported/ID Gold.png-8a76b42a5682fbf66ff2d3d8575fc4b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ID Underlay.png"
-dest_files=["res://.godot/imported/ID Underlay.png-e8906f3eb3b50ebc4e46d097a116f890.ctex"]
+source_file="res://Assets/ID/ID Gold.png"
+dest_files=["res://.godot/imported/ID Gold.png-8a76b42a5682fbf66ff2d3d8575fc4b5.ctex"]
 
 [params]
 
