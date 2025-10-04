@@ -283,10 +283,6 @@ script = ExtResource("3_ow1eo")
 drag_bounds_normal = Rect2(1270.278, 221.568, 756.392, 943.892)
 drag_bounds_button_pressed = Rect2(209.909, 183.926, 1817.471, 1023)
 drop_zone = Rect2(328.517, 339.465, 703.125, 679.688)
-button_group = null
-droppable_group = null
-char_node_path = null
-hover_mode = null
 
 [node name="State" type="Label" parent="Documents/License"]
 offset_left = -170.0
@@ -484,10 +480,6 @@ script = ExtResource("3_ow1eo")
 drag_bounds_normal = Rect2(1270.278, 221.568, 756.392, 943.892)
 drag_bounds_button_pressed = Rect2(209.909, 183.926, 1817.471, 1023)
 drop_zone = Rect2(328.517, 339.465, 703.125, 679.688)
-button_group = null
-droppable_group = null
-char_node_path = null
-hover_mode = null
 
 [node name="State" type="Label" parent="Documents/IdBadge"]
 offset_left = -115.0

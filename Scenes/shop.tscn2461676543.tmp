@@ -1,8 +1,7 @@
-[gd_scene load_steps=49 format=3 uid="uid://dm48wxucwf68b"]
+[gd_scene load_steps=46 format=3 uid="uid://dm48wxucwf68b"]
 
 [ext_resource type="Script" uid="uid://b1dl04f261l3i" path="res://Scripts/fade.gd" id="1_1cyt5"]
 [ext_resource type="Texture2D" uid="uid://b4k1t2ilnudsr" path="res://Assets/Gun Shop.png" id="1_a0mxf"]
-[ext_resource type="Texture2D" uid="uid://cntvb1103do5x" path="res://Assets/Desk.png" id="2_dvu38"]
 [ext_resource type="Texture2D" uid="uid://dlkxli3r3uvqn" path="res://Assets/License.png" id="2_io27d"]
 [ext_resource type="Script" uid="uid://qqgq2lambc2w" path="res://Scripts/main.gd" id="2_k6pkm"]
 [ext_resource type="Script" path="res://Scripts/click_and_drag.gd" id="3_ow1eo"]
@@ -22,7 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://vaqpgpntcqjw" path="res://Assets/Characters/characters2.png" id="16_m13ki"]
 [ext_resource type="Texture2D" uid="uid://bh8n1bo0euofs" path="res://Assets/Characters/characters4.png" id="17_3mbjb"]
 [ext_resource type="Texture2D" uid="uid://c663i0ow3iix5" path="res://Assets/Characters/Backdrop3.png" id="18_jhx1v"]
-[ext_resource type="Script" uid="uid://0cqplut122pa" path="res://Scenes/dialogue.gd" id="22_jhx1v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mjtuy"]
 atlas = ExtResource("14_1cyt5")
@@ -209,13 +207,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvu38"]
-bg_color = Color(0.8700836, 0.87082124, 0.85297287, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
 [node name="Node2D" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -228,13 +219,8 @@ offset_bottom = 1208.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("1_1cyt5")
 
-[node name="Desk" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(1746, 696)
-texture = ExtResource("2_dvu38")
-
 [node name="GunShop" type="Sprite2D" parent="."]
-position = Vector2(722, 696)
+position = Vector2(1234, 696)
 texture = ExtResource("1_a0mxf")
 script = ExtResource("2_k6pkm")
 
@@ -243,7 +229,6 @@ position = Vector2(1119, 696)
 zoom = Vector2(1.408, 1.408)
 
 [node name="Buttons" type="Node2D" parent="."]
-z_index = 1
 position = Vector2(-213, 0)
 
 [node name="Check" type="AnimatedSprite2D" parent="Buttons"]
@@ -260,7 +245,6 @@ sprite_frames = SubResource("SpriteFrames_dvu38")
 frame = 1
 script = ExtResource("4_0vsm1")
 target_frame = 4
-button_type = "no"
 
 [node name="Police" type="AnimatedSprite2D" parent="Buttons"]
 position = Vector2(2172, 1114)
@@ -269,24 +253,19 @@ sprite_frames = SubResource("SpriteFrames_dvu38")
 frame = 2
 script = ExtResource("4_0vsm1")
 target_frame = 5
-button_type = "police"
 
 [node name="Documents" type="Node2D" parent="."]
-z_index = 2
+z_index = 1
 position = Vector2(0, -634)
 
 [node name="License" type="Sprite2D" parent="Documents"]
-position = Vector2(1600, 1554)
+position = Vector2(1603, 1546)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("2_io27d")
 script = ExtResource("3_ow1eo")
 drag_bounds_normal = Rect2(1270.278, 221.568, 756.392, 943.892)
 drag_bounds_button_pressed = Rect2(209.909, 183.926, 1817.471, 1023)
 drop_zone = Rect2(328.517, 339.465, 703.125, 679.688)
-button_group = null
-droppable_group = null
-char_node_path = null
-hover_mode = null
 
 [node name="State" type="Label" parent="Documents/License"]
 offset_left = -170.0
@@ -402,7 +381,7 @@ offset_bottom = 81.0
 scale = Vector2(0.1, 0.1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 170
-text = "Firearms Safety Certification"
+text = "Firearms Saftey Certification"
 metadata/_edit_use_anchors_ = true
 
 [node name="1" type="Label" parent="Documents/License"]
@@ -477,17 +456,13 @@ scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_k6jq0")
 
 [node name="IdBadge" type="Sprite2D" parent="Documents"]
-position = Vector2(1575, 1664.0001)
+position = Vector2(1594, 1678.0001)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("11_1sjcd")
 script = ExtResource("3_ow1eo")
 drag_bounds_normal = Rect2(1270.278, 221.568, 756.392, 943.892)
 drag_bounds_button_pressed = Rect2(209.909, 183.926, 1817.471, 1023)
 drop_zone = Rect2(328.517, 339.465, 703.125, 679.688)
-button_group = null
-droppable_group = null
-char_node_path = null
-hover_mode = null
 
 [node name="State" type="Label" parent="Documents/IdBadge"]
 offset_left = -115.0
@@ -653,115 +628,3 @@ sprite_frames = SubResource("SpriteFrames_k7yfq")
 [node name="Backdrop" type="Sprite2D" parent="Char"]
 position = Vector2(713, 804)
 texture = ExtResource("18_jhx1v")
-
-[node name="Dialogue" type="Node2D" parent="."]
-position = Vector2(210, 154)
-script = ExtResource("22_jhx1v")
-
-[node name="1" type="Panel" parent="Dialogue"]
-offset_left = 20.0
-offset_top = 30.0
-offset_right = 430.0
-offset_bottom = 81.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_dvu38")
-
-[node name="Label" type="Label" parent="Dialogue/1"]
-layout_mode = 0
-offset_left = 8.0
-offset_right = 7777.0
-offset_bottom = 1022.0
-scale = Vector2(0.05, 0.05)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 750
-text = "License and ID Please"
-
-[node name="2" type="Panel" parent="Dialogue"]
-offset_left = 594.0
-offset_top = 81.0
-offset_right = 1004.0
-offset_bottom = 234.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_dvu38")
-
-[node name="Label" type="Label" parent="Dialogue/2"]
-layout_mode = 0
-offset_left = 12.0
-offset_right = 7053.0
-offset_bottom = 2047.0
-scale = Vector2(0.05, 0.05)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -150
-theme_override_font_sizes/font_size = 750
-text = "Here You Go. I'll be 
-purchasing a Gun
-Model"
-
-[node name="3" type="Panel" parent="Dialogue"]
-offset_left = 20.0
-offset_top = 234.0
-offset_right = 430.0
-offset_bottom = 336.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_dvu38")
-
-[node name="Label" type="Label" parent="Dialogue/3"]
-layout_mode = 0
-offset_left = 8.0
-offset_right = 7777.0
-offset_bottom = 1022.0
-scale = Vector2(0.05, 0.05)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 750
-text = "You need to leave 
-now"
-
-[node name="4" type="Panel" parent="Dialogue"]
-offset_left = 594.0
-offset_top = 336.0
-offset_right = 1004.0
-offset_bottom = 387.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_dvu38")
-
-[node name="Label" type="Label" parent="Dialogue/4"]
-layout_mode = 0
-offset_left = 8.0
-offset_right = 7777.0
-offset_bottom = 1022.0
-scale = Vector2(0.05, 0.05)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 750
-text = "Explanation"
-
-[node name="5" type="Panel" parent="Dialogue"]
-offset_left = 20.0
-offset_top = 387.0
-offset_right = 430.0
-offset_bottom = 482.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_dvu38")
-
-[node name="Label" type="Label" parent="Dialogue/5"]
-layout_mode = 0
-offset_left = 8.0
-offset_right = 7777.0
-offset_bottom = 1022.0
-scale = Vector2(0.05, 0.05)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -150
-theme_override_font_sizes/font_size = 750
-text = "Please Leave Right 
-Now"
-
-[node name="6" type="Panel" parent="Dialogue"]
-offset_left = 594.0
-offset_top = 482.0
-offset_right = 1004.0
-offset_bottom = 533.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_dvu38")
-
-[node name="Label" type="Label" parent="Dialogue/6"]
-layout_mode = 0
-offset_left = 8.0
-offset_right = 7777.0
-offset_bottom = 1022.0
-scale = Vector2(0.05, 0.05)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 750
-text = "Explanation"

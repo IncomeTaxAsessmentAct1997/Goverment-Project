@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://ow5pls6ol4bu" path="res://Scripts/date.gd" id="3_s0qnm"]
 [ext_resource type="Script" uid="uid://c4pvnypii26rs" path="res://Scripts/movement.gd" id="4_ql1t1"]
 [ext_resource type="Script" uid="uid://i8u7k6ucyxnj" path="res://Scripts/select.gd" id="5_gbq6j"]
-[ext_resource type="Script" uid="uid://21tr0qleo66w" path="res://scripts/supreme_court.gd" id="6_kbpr1"]
+[ext_resource type="Script" uid="uid://21tr0qleo66w" path="res://Scripts/supreme_court.gd" id="6_kbpr1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s0qnm"]
 shader = ExtResource("3_ql1t1")
